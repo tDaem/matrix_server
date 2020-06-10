@@ -19,7 +19,9 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(permissionInterceptor).addPathPatterns("/**").excludePathPatterns("/app/login");
+        registry.addInterceptor(permissionInterceptor)
+                .addPathPatterns("/**")//拦截所有路径
+                .excludePathPatterns("/app/login", "/app/register");//排除拦截的路径
     }
 
 }

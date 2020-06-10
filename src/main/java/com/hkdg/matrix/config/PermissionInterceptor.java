@@ -72,7 +72,7 @@ public class PermissionInterceptor implements HandlerInterceptor {
         // logout
         XxlSsoUser xxlUser = SsoTokenLoginHelper.loginCheck(sessionId);
         if (xxlUser == null) {
-            return new ReturnT<>(403, "用户未登录!");
+            return new ReturnT<>(401, "用户未登录!");
         }
         return new ReturnT<>(xxlUser);
     }

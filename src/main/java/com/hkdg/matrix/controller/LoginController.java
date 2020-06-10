@@ -37,7 +37,7 @@ public class LoginController {
     public ReturnT<String> login(String email, String password) {
 
         // valid login
-        ReturnT<User> result = userService.findUser(email, password);
+        ReturnT<User> result = userService.findUserByEmailAndPassword(email, password);
         if (result.getCode() != ReturnT.SUCCESS_CODE) {
             return new ReturnT<String>(result.getCode(), result.getMsg());
         }

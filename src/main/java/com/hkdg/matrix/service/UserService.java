@@ -12,12 +12,19 @@ public interface UserService {
      * @param password
      * @return
      */
-    ReturnT<User> findUser(String email, String password);
+    ReturnT<User> findUserByEmailAndPassword(String email, String password);
 
     /**
      * 通过sessionId找用户
      * @param sessionId
      * @return
      */
-    ReturnT<User> findUser(String sessionId);
+    ReturnT<User> findUserBySessionId(String sessionId);
+
+    /**
+     * 注册
+     * @param user
+     * @return
+     */
+    ReturnT<User> register(User user);
 }

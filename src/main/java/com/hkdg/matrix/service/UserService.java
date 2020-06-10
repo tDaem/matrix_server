@@ -15,9 +15,9 @@ public interface UserService {
     ReturnT<User> findUser(String email, String password);
 
     /**
-     * 通过id找用户
-     * @param id
+     * 通过sessionId找用户
+     * @param sessionId
      * @return
      */
-    ReturnT<User> findUser(int id);
+    ReturnT<User> findUser(String sessionId);
 }

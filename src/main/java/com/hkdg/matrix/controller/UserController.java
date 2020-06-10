@@ -30,8 +30,7 @@ public class UserController {
      */
     @GetMapping("/userInfo")
     public ReturnT<User> userInfo(String sessionId) {
-        XxlSsoUser xxlUser = SsoTokenLoginHelper.loginCheck(sessionId);
-        return userService.findUser(Integer.parseInt(xxlUser.getUserid()));
+        return userService.findUser(sessionId);
     }
 
 

@@ -4,6 +4,8 @@ import com.hkdg.matrix.bean.User;
 import com.hkdg.matrix.dao.UserDao;
 import com.hkdg.matrix.service.UserService;
 import com.xxl.sso.core.entity.ReturnT;
+import com.xxl.sso.core.login.SsoTokenLoginHelper;
+import com.xxl.sso.core.user.XxlSsoUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,8 +36,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ReturnT<User> findUser(int id) {
-        User user = userDao.findById(id);
+    public ReturnT<User> findUser(String sessionId) {
+        XxlSsoUser xxlUser = SsoTokenLoginHelper.loginCheck(sessionId);
+        String userId = xxlUser.getUserid();
+        User user = userDao.findById(Integer.parseInt(userId));
         ReturnT<User> returnT = new ReturnT<>(user);
         return returnT;
     }

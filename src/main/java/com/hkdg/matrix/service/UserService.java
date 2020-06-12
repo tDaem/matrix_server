@@ -8,6 +8,7 @@ public interface UserService {
 
     /**
      * 通过邮箱和密码找用户
+     *
      * @param email
      * @param password
      * @return
@@ -16,13 +17,23 @@ public interface UserService {
 
     /**
      * 通过sessionId找用户
+     *
      * @param sessionId
      * @return
      */
     ReturnT<User> findUserBySessionId(String sessionId);
 
     /**
+     * 查询用户是否登录
+     *
+     * @param sessionId
+     * @return
+     */
+    ReturnT<Boolean> checkUserBySessionId(String sessionId);
+
+    /**
      * 注册
+     *
      * @param user
      * @return
      */

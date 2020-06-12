@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
+import java.net.HttpURLConnection;
 
 /**
  * @author xuxueli 2015-12-12 18:09:04
@@ -23,13 +24,12 @@ import java.io.PrintWriter;
 public class PermissionInterceptor implements HandlerInterceptor {
 
 
-
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         String sessionId = request.getParameter("sessionId");
         ReturnT<XxlSsoUser> loginCheck = loginCheck(sessionId);
-        if (loginCheck.getCode() == 200) {
+        if (loginCheck.getCode() == ReturnT.SUCCESS_CODE) {
             return true;
         } else {
             sendJsonMessage(response, loginCheck);
@@ -72,7 +72,7 @@ public class PermissionInterceptor implements HandlerInterceptor {
         // logout
         XxlSsoUser xxlUser = SsoTokenLoginHelper.loginCheck(sessionId);
         if (xxlUser == null) {
-            return new ReturnT<>(401, "用户未登录!");
+            return new ReturnT<>(HttpURLConnection.HTTP_FORBIDDEN, "用户未登录!");
         }
         return new ReturnT<>(xxlUser);
     }

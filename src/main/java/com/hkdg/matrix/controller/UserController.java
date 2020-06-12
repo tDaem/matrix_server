@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @Date 2020/6/10
  */
 @RestController
-@RequestMapping("/app")
+@RequestMapping("/app/user")
 public class UserController {
 
     @Autowired
@@ -33,5 +33,9 @@ public class UserController {
         return userService.findUserBySessionId(sessionId);
     }
 
-
+    /*@GetMapping("/query")
+    public ReturnT<User> check(String sessionId) {
+        return userService.findUserBySessionId(sessionId);
+    }
+*/
 }

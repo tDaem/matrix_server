@@ -39,7 +39,9 @@ public class Video {
     @GeneratedValue
     private int id;
 
+    @Column(columnDefinition = "text")
     private String videoUrl;
 
+    @Column(columnDefinition = "text")
     private String thumbnailUrl;
 }

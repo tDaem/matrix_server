@@ -11,5 +11,7 @@ import java.util.List;
  * @Date 2020/6/10
  */
 public interface VideoService {
-    public ReturnT<List<Video>> getVideoList();
+    ReturnT<List<Video>> getVideoList();
+
+    ReturnT<Video> getVideoById(Integer id);
 }

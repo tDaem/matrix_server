@@ -27,4 +27,9 @@ public class VideoController {
         return videoService.getVideoList();
     }
 
+    @GetMapping("/video")
+    public ReturnT<Video> getVideo(Integer id) {
+        return videoService.getVideoById(id);
+    }
+
 }

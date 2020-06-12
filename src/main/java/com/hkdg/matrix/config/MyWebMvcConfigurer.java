@@ -21,7 +21,7 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(permissionInterceptor)
                 .addPathPatterns("/**")//拦截所有路径
-                .excludePathPatterns("/app/login", "/app/register");//排除拦截的路径
+                .excludePathPatterns("/app/user/login", "/app/user/register","/app/videolist");//排除拦截的路径
     }
 
 }

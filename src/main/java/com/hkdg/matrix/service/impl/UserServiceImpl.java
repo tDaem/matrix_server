@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
     public ReturnT<User> findUserByEmailAndPassword(String email, String password) {
 
         if (email == null || email.trim().length() == 0) {
-            return new ReturnT<>(ReturnT.FAIL_CODE, "Please input username.");
+            return new ReturnT<>(ReturnT.FAIL_CODE, "Please input email.");
         }
         if (password == null || password.trim().length() == 0) {
             return new ReturnT<>(ReturnT.FAIL_CODE, "Please input password.");
@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
 
         User user = userDao.findByEmailAndPassword(email, password);
 
-        if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
+        if (user != null) {
             return new ReturnT<>(user);
         }
 
@@ -46,12 +46,27 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public ReturnT<Boolean> checkUserBySessionId(String sessionId) {
+        XxlSsoUser xxlUser = SsoTokenLoginHelper.loginCheck(sessionId);
+        return new ReturnT<>(xxlUser != null);
+    }
+
+
+    @Override
     public ReturnT<User> register(User user) {
+
+        if (user.getEmail() == null || user.getEmail().trim().length() == 0) {
+            return new ReturnT<>(ReturnT.FAIL_CODE, "Please input username.");
+        }
+        if (user.getPassword() == null || user.getPassword().trim().length() == 0) {
+            return new ReturnT<>(ReturnT.FAIL_CODE, "Please input password.");
+        }
+
         User u = userDao.findByEmail(user.getEmail());
         if (u != null)
-            return new ReturnT<>(403,"邮箱已被注册!");
+            return new ReturnT<>(ReturnT.FAIL_CODE, "邮箱已被注册!");
         userDao.save(user);
-        return new ReturnT<>(ReturnT.SUCCESS_CODE,"注册成功!");
+        return new ReturnT<>(ReturnT.SUCCESS_CODE, "注册成功!");
     }
 
 

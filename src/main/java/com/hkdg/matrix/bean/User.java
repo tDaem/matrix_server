@@ -21,10 +21,13 @@ public class User {
     @GeneratedValue
     private int id;
 
+    private String nickname;
+
     private String email;
 
     private String password;
 
+    @Column(columnDefinition = "text")
     private String avatarUrl;
 
     /**

@@ -41,7 +41,17 @@ public class VideoServiceImpl implements VideoService {
     @Override
     public ReturnT<List<Video>> getVideoList() {
         List<Video> videos = videoDao.findAll();
+        /*for (int i = 0; i < videos.size(); i++) {
+            videos.get(i).setVideoUrl(null);
+        }*/
         ReturnT<List<Video>> returnT = new ReturnT<>(videos);
+        return returnT;
+    }
+
+    @Override
+    public ReturnT<Video> getVideoById(Integer id) {
+        Video video = videoDao.queryById(id);
+        ReturnT<Video> returnT = new ReturnT<>(video);
         return returnT;
     }
 }

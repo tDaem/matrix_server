@@ -19,7 +19,7 @@ import java.util.UUID;
  * @author tyx
  */
 @RestController
-@RequestMapping("/app")
+@RequestMapping("/app/user")
 public class LoginController {
 
     @Autowired
